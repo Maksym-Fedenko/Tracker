@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.os.Handler;
 import android.util.FloatMath;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -102,8 +103,12 @@ public class DrawView extends View {
         if (drawingMode) {
             p.setStrokeWidth(10);
             //canvas.drawLine(1, 1, 200, 200, p);
-            // TODO: 10.06.2016  
-            canvas.drawLine(finger.Before.x, finger.Before.y, finger.Now.x, finger.Now.y, p);
+            // TODO: 10.06.2016
+            Logging logging = new Logging(this.getClass().getCanonicalName());
+            logging.logCoords(finger.Before.x,finger.Before.y,
+                    finger.Now.x,finger.Now.y);
+            canvas.drawLine(finger.Before.x, finger.Before.y,
+                    finger.Now.x, finger.Now.y, p);
             canvas.drawCircle(finger.Before.x, finger.Before.y, p.getStrokeWidth() /2, p);
             canvas.drawCircle(finger.Now.x, finger.Now.y, p.getStrokeWidth() /2, p);
             //canvas.drawPoint(finger.Now.x, finger.Now.y,p);
