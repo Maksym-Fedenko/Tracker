@@ -100,10 +100,11 @@ public class DrawView extends View {
     public void checkGestures() {
 
         if (drawingMode) {
-            p.setStrokeWidth(20);
+            p.setStrokeWidth(10);
             //canvas.drawLine(1, 1, 200, 200, p);
+            // TODO: 10.06.2016  
             canvas.drawLine(finger.Before.x, finger.Before.y, finger.Now.x, finger.Now.y, p);
-            canvas.drawCircle(finger.Before.x+200, finger.Before.y+200, p.getStrokeWidth() *2, p);
+            canvas.drawCircle(finger.Before.x, finger.Before.y, p.getStrokeWidth() /2, p);
             canvas.drawCircle(finger.Now.x, finger.Now.y, p.getStrokeWidth() /2, p);
             //canvas.drawPoint(finger.Now.x, finger.Now.y,p);
         }
