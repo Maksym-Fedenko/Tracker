@@ -7,7 +7,6 @@ import android.util.Log;
  * Created by Maksym on 06.06.2016.
  */
 public class Finger {
-    public int ID;
     public Point Now;
     public Point Before;
     public long wasDown;
@@ -19,6 +18,7 @@ public class Finger {
         wasDown = System.currentTimeMillis();
         //ID = id;
         Now = Before = startPoint = new Point(x, y);
+
     }
 
     public void setNow(int x, int y){
@@ -35,5 +35,6 @@ public class Finger {
         //logging.logCoords(Before.x,Before.y,Now.x,Now.y); //for logging
         if(DrawView.checkDistance(Now, startPoint) > DrawView.density * 25)
             enabledLongTouch = false;
+        //logging.log(String.valueOf(enabledLongTouch)); //for logging
     }
 }

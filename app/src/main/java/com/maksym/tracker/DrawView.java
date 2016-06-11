@@ -21,7 +21,7 @@ import android.view.WindowManager;
  */
 public class DrawView extends View {
     Paint p = new Paint();
-    boolean drawingMode = false;
+    boolean drawingMode;
     float x ;
     float y ;
     Canvas canvas;
@@ -40,6 +40,7 @@ public class DrawView extends View {
         //sb = new StringBuilder();
         p.setStrokeWidth(10);//5*density);
         p.setColor(Color.RED);
+
 
         /** This block of code gets dimensions of screen into Point size**/
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -72,6 +73,8 @@ public class DrawView extends View {
         String sMove = null;
         String sUp = null;*/
         if(action  == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_POINTER_DOWN){
+            //requestFocus();
+            drawingMode = true;
             handler.postDelayed(longPress, 1000);
             finger=new Finger((int)x, (int)y);
         }
@@ -146,6 +149,6 @@ public class DrawView extends View {
         public void run() {
             if(finger.enabledLongTouch){
                 finger.enabledLongTouch = false;
-                drawingMode = !drawingMode;
+                drawingMode = false;//!drawingMode;
         }}};
 }
