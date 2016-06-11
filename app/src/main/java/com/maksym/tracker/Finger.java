@@ -22,17 +22,17 @@ public class Finger {
     }
 
     public void setNow(int x, int y){
-        Logging logging = new Logging(this.getClass().getCanonicalName());
+        //Logging logging = new Logging(this.getClass().getCanonicalName()); //for logging
         if(!enabled){
-            logging.log(String.valueOf(enabled));
+            //logging.log(String.valueOf(enabled)); //for logging
             enabled = true;
             //Now = Before = startPoint = new Point(x, y);
         }
-        logging.log(Before.toString());
-        logging.log(Now.toString());
+        //logging.log(Before.toString()); //for logging
+        //logging.log(Now.toString()); //for logging
         Before = Now;
         Now = new Point(x, y);
-        logging.logCoords(Before.x,Before.y,Now.x,Now.y);
+        //logging.logCoords(Before.x,Before.y,Now.x,Now.y); //for logging
         if(DrawView.checkDistance(Now, startPoint) > DrawView.density * 25)
             enabledLongTouch = false;
     }
