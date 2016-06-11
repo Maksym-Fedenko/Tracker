@@ -1,12 +1,14 @@
 package com.maksym.tracker;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.util.FloatMath;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -27,7 +29,7 @@ public class DrawView extends View {
     Finger finger;// = new Finger((int)x, (int)y);
     long lastTapTime;
     Point lastTapPosition;
-    Bitmap imageCopy = Bitmap.createBitmap(1000, 1000, Bitmap.Config.ARGB_4444);
+    //Bitmap imageCopy = Bitmap.createBitmap(1000, 1000, Bitmap.Config.ARGB_4444);
 
 
     public DrawView(Context context) {
@@ -69,7 +71,17 @@ public class DrawView extends View {
             if(System.currentTimeMillis() - finger.wasDown < 100 && finger.wasDown - lastTapTime < 200 &&
                     finger.wasDown - lastTapTime > 0 && checkDistance(finger.Now, lastTapPosition) < density * 25) {
                 //imageCopy=image.copy(image.getConfig(),true);
-                canvas.drawColor(Color.WHITE);
+                //canvas.drawColor(Color.WHITE);
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                String[] items = {"Красный", "Зелёный", "Синий", "Голубой", "Чёрный", "Белый", "Жёлый", "Розовый"};
+                final AlertDialog dialog = builder.setTitle("Выберите цвет кисти").setItems(items, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        int[] colors = {Color.RED, Color.GREEN, Color.BLUE, 0xFF99CCFF, Color.BLACK, Color.WHITE,
+                                Color.YELLOW, 0xFFFFCC99};
+                        p.setColor(colors[which]);
+                    }
+                }).create();
+                dialog.show();
             }
 
             /*if(finger.enabledLongTouch && !(finger.Now==finger.Before)) {
@@ -104,7 +116,7 @@ public class DrawView extends View {
         if (drawingMode) {
             p.setStrokeWidth(10);
             //canvas.drawLine(1, 1, 200, 200, p);
-            // TODO: 10.06.2016
+            //
             Logging logging = new Logging(this.getClass().getCanonicalName());
             logging.logCoords(finger.Before.x,finger.Before.y,
                     finger.Now.x,finger.Now.y);

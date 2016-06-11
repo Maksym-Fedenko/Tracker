@@ -26,7 +26,7 @@ public class Finger {
         if(!enabled){
             logging.log(String.valueOf(enabled));
             enabled = true;
-            Now = Before = startPoint = new Point(x, y);
+            //Now = Before = startPoint = new Point(x, y);
         }
         logging.log(Before.toString());
         logging.log(Now.toString());
