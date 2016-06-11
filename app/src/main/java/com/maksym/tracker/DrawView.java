@@ -9,8 +9,10 @@ import android.graphics.Point;
 import android.os.Handler;
 import android.util.FloatMath;
 import android.util.Log;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 
 /**
  * Created by Maksym on 04.06.2016.
@@ -27,7 +29,7 @@ public class DrawView extends View {
     Finger finger;// = new Finger((int)x, (int)y);
     long lastTapTime;
     Point lastTapPosition;
-    Bitmap imageCopy = Bitmap.createBitmap(1000, 1000, Bitmap.Config.ARGB_4444);
+    //Bitmap imageCopy = Bitmap.createBitmap(1000, 1000, Bitmap.Config.ARGB_4444); //commented because it's useless anyway
 
 
     public DrawView(Context context) {
@@ -36,7 +38,14 @@ public class DrawView extends View {
         //sb = new StringBuilder();
         p.setStrokeWidth(10);//5*density);
         p.setColor(Color.RED);
-        image = Bitmap.createBitmap(1000, 1000, Bitmap.Config.ARGB_4444);
+
+        /** This block of code gets dimensions of screen into Point size**/
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        /**End of block**/
+        image = Bitmap.createBitmap(size.x, size.y, Bitmap.Config.ARGB_4444);
 
         canvas = new Canvas(image);
         canvas.drawColor(Color.WHITE);
