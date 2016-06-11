@@ -79,6 +79,7 @@ public class DrawView extends View {
 
             lastTapTime = System.currentTimeMillis();
             lastTapPosition = finger.Now;
+
         }
 
         else if(action == MotionEvent.ACTION_MOVE){
@@ -103,11 +104,12 @@ public class DrawView extends View {
 
         if (drawingMode) {
             p.setStrokeWidth(10);
+            /** This is here for debug purposes*/
             //canvas.drawLine(1, 1, 200, 200, p);
-            // TODO: 10.06.2016
-            Logging logging = new Logging(this.getClass().getCanonicalName());
-            logging.logCoords(finger.Before.x,finger.Before.y,
-                    finger.Now.x,finger.Now.y);
+            //Logging logging = new Logging(this.getClass().getCanonicalName());
+            //logging.logCoords(finger.Before.x,finger.Before.y,
+            //        finger.Now.x,finger.Now.y);
+
             canvas.drawLine(finger.Before.x, finger.Before.y,
                     finger.Now.x, finger.Now.y, p);
             canvas.drawCircle(finger.Before.x, finger.Before.y, p.getStrokeWidth() /2, p);
