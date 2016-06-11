@@ -21,7 +21,7 @@ public class Finger {
         Now = Before = startPoint = new Point(x, y);
     }
 
-    public void setNow(Point Now1, int x, int y){
+    public void setNow(int x, int y){
         Logging logging = new Logging(this.getClass().getCanonicalName());
         if(!enabled){
             logging.log(String.valueOf(enabled));
@@ -30,11 +30,10 @@ public class Finger {
         }
         logging.log(Before.toString());
         logging.log(Now.toString());
-        Before = Now1;
-        Now1 = new Point(x, y);
-        Now=Now1;
+        Before = Now;
+        Now = new Point(x, y);
         logging.logCoords(Before.x,Before.y,Now.x,Now.y);
-        if(DrawView.checkDistance(Now1, startPoint) > DrawView.density * 25)
+        if(DrawView.checkDistance(Now, startPoint) > DrawView.density * 25)
             enabledLongTouch = false;
     }
 }

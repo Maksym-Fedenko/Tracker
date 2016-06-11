@@ -55,13 +55,14 @@ public class DrawView extends View {
         int action = event.getActionMasked(); // Действие
         float x = event.getX();
         float y = event.getY();
-        finger=new Finger((int)x, (int)y);
+
 
         /*String sDown = null;
         String sMove = null;
         String sUp = null;*/
         if(action  == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_POINTER_DOWN){
             handler.postDelayed(longPress, 1000);
+            finger=new Finger((int)x, (int)y);
         }
 
         else if(action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_POINTER_UP) {
@@ -81,7 +82,7 @@ public class DrawView extends View {
         }
 
         else if(action == MotionEvent.ACTION_MOVE){
-            finger.setNow(finger.Now,(int)x, (int)y);
+            finger.setNow((int)x, (int)y);
             checkGestures();
             invalidate();
             }
